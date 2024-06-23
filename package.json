@@ -13,7 +13,7 @@
     "codestyle:ci": "run-p lint:ci format:ci",
     "codestyle": "run-s lint format",
     "build": "babel src --out-dir build --source-maps inline",
-    "test": "jest --verbose",
+    "test": "jest --verbose --setupFiles dotenv/config",
     "coverage": "jest --coverage"
   },
   "author": "Margarita Vladyko <margo.vladyko@gmail.com>",
@@ -25,6 +25,7 @@
     "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.24.4",
     "@types/jest": "^29.5.12",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
