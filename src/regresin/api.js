@@ -2,9 +2,9 @@ const baseUrl = 'https://reqres.in/api'
 
 // eslint-disable-next-line no-unused-vars
 async function fetchUsers(queryParams = {}) {
-    const response = await fetch(
-      `${baseUrl}/users?${new URLSearchParams(queryParams)}`,
-    )
+  const response = await fetch(
+    `${baseUrl}/users?${new URLSearchParams(queryParams)}`,
+  )
   return {
     status: response.status,
     headers: response.headers,
