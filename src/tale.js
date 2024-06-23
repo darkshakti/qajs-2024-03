@@ -7,7 +7,7 @@ export function kolobok(character) {
     case 'лиса':
       return 'Меня съели'
     default:
-      return 'Я встретил кого-то неизвестного'
+      throw new Error('Я встретил кого-то неизвестного')
   }
 }
 
@@ -17,6 +17,6 @@ export function newYear(character) {
     case 'Снегурочка':
       return `${character}! ${character}! ${character}!`
     default:
-      return 'Неизвестный персонаж'
+      throw new Error('Неизвестный персонаж')
   }
 }

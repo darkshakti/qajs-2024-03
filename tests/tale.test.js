@@ -16,25 +16,26 @@ describe('kolobok function', () => {
     expect(result).toBe('Меня съели')
   })
 
-  it('should return a default response for unknown character', () => {
-    const result = kolobok('неизвестный')
-    expect(result).toBe('Я встретил кого-то неизвестного')
-  })
-})
-
-describe('newYear function', () => {
-  it('should return the correct response for Дед Мороз', () => {
-    const result = newYear('Дед Мороз')
-    expect(result).toBe('Дед Мороз! Дед Мороз! Дед Мороз!')
+  it('should throw error for unknown character', () => {
+    expect(() => {
+      kolobok('неизвестный')
+    }).toThrow('Я встретил кого-то неизвестного')
   })
 
-  it('should return the correct response for Снегурочка', () => {
-    const result = newYear('Снегурочка')
-    expect(result).toBe('Снегурочка! Снегурочка! Снегурочка!')
-  })
+  describe('newYear function', () => {
+    it('should return the correct response for Дед Мороз', () => {
+      const result = newYear('Дед Мороз')
+      expect(result).toBe('Дед Мороз! Дед Мороз! Дед Мороз!')
+    })
 
-  it('should return a default response for unknown character', () => {
-    const result = newYear('неизвестный')
-    expect(result).toBe('Неизвестный персонаж')
+    it('should return the correct response for Снегурочка', () => {
+      const result = newYear('Снегурочка')
+      expect(result).toBe('Снегурочка! Снегурочка! Снегурочка!')
+    })
+
+    it('should return a default response for unknown character', () => {
+      const result = newYear('неизвестный')
+      expect(result).toBe('Неизвестный персонаж')
+    })
   })
 })
