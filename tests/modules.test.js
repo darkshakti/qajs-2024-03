@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { greet, farewell } from '../src/modules.js'
 
 describe('greet function', () => {

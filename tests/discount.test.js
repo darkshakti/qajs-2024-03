@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { calculateTotal } from '../src/discount.js'
 
 describe('calculateTotal function', () => {

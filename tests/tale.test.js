@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { kolobok, newYear } from '../src/tale'
 
 describe('kolobok function', () => {
