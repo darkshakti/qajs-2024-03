@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { kolobok, newYear } from '../src/tale'
 
 describe('kolobok function', () => {
@@ -34,8 +35,9 @@ describe('kolobok function', () => {
     })
 
     it('should return a default response for unknown character', () => {
-      const result = newYear('неизвестный')
-      expect(result).toBe('Неизвестный персонаж')
+      expect(() => {
+        newYear('неизвестный')
+      }).toThrow('Неизвестный персонаж')
     })
   })
 })
