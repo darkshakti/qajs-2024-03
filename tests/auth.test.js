@@ -4,15 +4,15 @@ describe('Auth', () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: 'kminchelle',
-        password: '0lelplR',
+        username: 'emilys',
+        password: 'emilyspass',
         expiresInMins: 30,
       }),
     })
     const data = await response.json()
 
     expect(response.status).toEqual(200)
-    expect(data.username).toBe('kminchelle')
+    expect(data.username).toBe('emilys')
     expect(data.token).toBeTruthy()
   })
 
@@ -21,7 +21,7 @@ describe('Auth', () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: 'kminchelle',
+        username: 'emilys',
         password: 'wrongpassword',
         expiresInMins: 30,
       }),
