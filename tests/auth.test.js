@@ -18,7 +18,7 @@ describe('Auth', () => {
     const data = await response.json()
 
     expect(response.status).toEqual(200)
-    expect(data.username).toBe('emilys')
+    expect(data.username).toBe(config.username)
     expect(data.token).toBeTruthy()
   })
 
