@@ -24,6 +24,7 @@
     "@babel/core": "^7.24.4",
     "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.24.4",
+    "@faker-js/faker": "^8.4.1",
     "@types/jest": "^29.5.12",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
