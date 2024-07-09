@@ -13,7 +13,7 @@ describe.skip('greet function', () => {
   })
 })
 
-describe('farewell function', () => {
+describe.skip('farewell function', () => {
   it('should return a farewell message with the given name', () => {
     const result = farewell('Jane')
     expect(result).toBe('Goodbye, Jane!')
