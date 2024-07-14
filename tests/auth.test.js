@@ -1,24 +1,25 @@
 import { config as _config } from '../framework'
-import axios from 'axios'
+import supertest from 'supertest'
 
 const config = _config.dummyjson
 
 describe('Auth', () => {
   it('Success login', async () => {
-    const response = await axios.post(`${config.baseURL}/auth/login`, {
+    const response = await supertest(config.baseURL).post('/auth/login').send({
       username: config.username,
       password: config.password,
+      expiresInMins: 30,
     })
 
     expect(response.status).toEqual(200)
-    expect(response.data.username).toBe(config.username)
-    expect(response.data.token).toBeTruthy()
+    expect(response.body.username).toBe(config.username)
+    expect(response.body.token).toBeTruthy()
   })
 
   it('Failed login', async () => {
     let response
     try {
-      response = await axios.post(`${config.baseURL}/auth/login`, {
+      response = await supertest(config.baseURL).post('/auth/login').send({
         username: config.username,
         password: 'wrongpassword',
       })
@@ -27,6 +28,6 @@ describe('Auth', () => {
     }
 
     expect(response?.status).toEqual(400)
-    expect(response?.data.message).toBe('Invalid credentials')
+    expect(response?.body.message).toBe('Invalid credentials')
   })
 })
