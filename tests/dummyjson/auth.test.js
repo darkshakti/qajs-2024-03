@@ -1,8 +1,7 @@
-import { config as _config } from '../framework'
+import { config as _config } from '../../framework'
 import got from 'got'
 
 const config = _config.dummyjson
-
 /**
  * Чтобы got работал вместе с jest
  * нужно добавить в jest.config.js
@@ -11,7 +10,6 @@ const config = _config.dummyjson
  *   ]
  * DOC: https://jestjs.io/docs/configuration#transformignorepatterns-arraystring
  */
-
 describe('Auth', () => {
   it('Success login', async () => {
     const response = await got.post(`${config.baseURL}/auth/login`, {
@@ -28,18 +26,19 @@ describe('Auth', () => {
     expect(response.body.token).toBeTruthy()
   })
 
-  // it('Failed login', async () => {
-  //   let response
-  //   try {
-  //     response = await supertest(config.baseURL).post('/auth/login').send({
-  //       username: config.username,
-  //       password: 'wrongpassword',
-  //     })
-  //   } catch (error) {
-  //     response = error.response
-  //   }
+  it('Failed login', async () => {
+    const response = await fetch(`${config.baseURL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: config.username,
+        password: 'wrongpassword',
+        expiresInMins: 30,
+      }),
+    })
+    const data = await response.json()
 
-  //   expect(response?.status).toEqual(400)
-  //   expect(response?.body.message).toBe('Invalid credentials')
-  // })
+    expect(response.status).toEqual(400)
+    expect(data.message).toBe('Invalid credentials')
+  })
 })
