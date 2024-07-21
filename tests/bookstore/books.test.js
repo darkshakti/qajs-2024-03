@@ -14,14 +14,14 @@ describe('Books', () => {
 
   let token
 
- beforeAll(async () => {
+  beforeAll(async () => {
     const { data } = await AuthService.generateToken({
       userName: config.userName,
       password: config.password,
     })
 
     token = data.token
-  }) 
+  })
 
   it('Список книг', async () => {
     const response = await BookService.getAll()

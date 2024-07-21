@@ -10,7 +10,7 @@ const config = _config.dummyjson
  *   ]
  * DOC: https://jestjs.io/docs/configuration#transformignorepatterns-arraystring
  */
-describe.skip('Auth', () => {
+describe('Auth', () => {
   it('Success login', async () => {
     const response = await got.post(`${config.baseURL}/auth/login`, {
       json: {
