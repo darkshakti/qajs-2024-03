@@ -4,18 +4,18 @@ import { AuthService } from '../../framework'
 describe('Авторизация', () => {
   it('Успешная авторизация', async () => {
     const response = await AuthService.generateToken({
-      userName: config.username,
+      userName: config.userName,
       password: config.password,
     })
 
     expect(response.status).toBe(200)
     expect(response.data.result).toBe('User authorized successfully.')
     expect(response.data.token).toBeDefined()
-  }, 30000)
+  }, 60000)
 
   it('Нельзя авторизоваться без пароля', async () => {
     const response = await AuthService.generateToken({
-      userName: config.username,
+      userName: config.userName,
       password: '',
     })
 

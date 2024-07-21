@@ -13,8 +13,7 @@ describe('Users', () => {
     const responseCreateUser = await UserService.create(newUser)
     userId = responseCreateUser.data.userID
 
-    const { data: authorizedBeforeLogin } =
-      await AuthService.authorized(newUser)
+    const { data: authorizedBeforeLogin } = await AuthService.authorized(newUser)
 
     const responseToken = await AuthService.generateToken(newUser)
     token = responseToken.data.token
@@ -25,8 +24,18 @@ describe('Users', () => {
     expect(authorizedAfterLogin).toBe(true)
   })
 
+  it('Получение информации о пользователе', async () => {
+    const response = await UserService.get({userId, token})
+
+    console.log(response)
+
+    expect(response.status).toBe(200)
+    expect(response.data.username).toBe(`${newUser.userName}`)
+  })
+
   it('Удаление юзера', async () => {
     const response = await UserService.remove({ userId, token })
+    
     expect(response.status).toBe(204)
     expect(response.data).toBe('')
   })
