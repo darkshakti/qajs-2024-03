@@ -2,9 +2,9 @@
 import config from '../../framework/config/configBookstore'
 import { AuthService } from '../../framework'
 
-describe.skip('Авторизация', () => {
+describe('Авторизация', () => {
   it('Успешная авторизация', async () => {
-    const response = await AuthService.generateToken({
+    const response = await AuthService.generateTokenCached({
       userName: config.userName,
       password: config.password,
     })

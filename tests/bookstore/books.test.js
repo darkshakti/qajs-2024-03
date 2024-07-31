@@ -18,12 +18,10 @@ describe('Books', () => {
   let token
 
   beforeAll(async () => {
-    const { data } = await AuthService.generateToken({
+    token = await AuthService.getTokenFromCache({
       userName: config.userName,
       password: config.password,
     })
-
-    token = data.token
   })
 
   test.each(isbns)(
