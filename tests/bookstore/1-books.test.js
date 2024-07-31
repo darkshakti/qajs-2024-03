@@ -14,7 +14,7 @@ describe('Books', () => {
   const isbn2 = book2.isbn
   const isbn3 = book3.isbn
   const isbns = [isbn, isbn2]
-  
+
   let token
 
   beforeAll(async () => {
@@ -28,7 +28,7 @@ describe('Books', () => {
 
   test.each(isbns)(
     'Test-1: Добавление книги в коллекцию к пользователю (ISBN: %s)',
-    async (isbn) => {
+    async isbn => {
       const responseAddListOfBooks = await UserBookService.addList({
         userId,
         isbns: [isbn],
@@ -37,7 +37,7 @@ describe('Books', () => {
 
       expect(responseAddListOfBooks.status).toBe(201)
       expect(responseAddListOfBooks.data).toEqual({ books: [{ isbn }] })
-    }
+    },
   )
 
   test('Test-2: Заменить книгу в коллекции пользователя', async () => {
@@ -55,12 +55,15 @@ describe('Books', () => {
     })
   })
 
-  test.each(isbns.map(isbn => [isbn]))('Test-3: Получить информацию о книге (ISBN: %s)', async (isbn) => {
-    const response = await BookService.getBookInformation(isbn)
-  
-    expect(response.status).toBe(200)
-    expect(response.data.isbn).toBe(isbn)
-  })  
+  test.each(isbns.map(isbn => [isbn]))(
+    'Test-3: Получить информацию о книге (ISBN: %s)',
+    async isbn => {
+      const response = await BookService.getBookInformation(isbn)
+
+      expect(response.status).toBe(200)
+      expect(response.data.isbn).toBe(isbn)
+    },
+  )
 
   test('Test-4: Удаление книги из коллекции пользователя', async () => {
     const responseOnlyOneBook = await UserBookService.removeBook({

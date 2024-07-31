@@ -10,6 +10,7 @@ const config = _config.dummyjson
  *   ]
  * DOC: https://jestjs.io/docs/configuration#transformignorepatterns-arraystring
  */
+// eslint-disable-next-line jest/no-disabled-tests
 describe.skip('Auth', () => {
   it('Success login', async () => {
     const response = await got.post(`${config.baseURL}/auth/login`, {
