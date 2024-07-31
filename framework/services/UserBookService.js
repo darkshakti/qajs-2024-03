@@ -45,8 +45,21 @@ const removeAllBooks = async ({ userId, token }) => {
   }
 }
 
+const removeOnlyOneBook = async ({ userId, token, isbn }) => {
+  const response = await supertest(config.baseURL)
+    .delete('/BookStore/v1/Book')
+    .set('Authorization', `Bearer ${token}`)
+    .send({ isbn, userId })
+  return {
+    headers: response.headers,
+    status: response.status,
+    data: response.body,
+  }
+}
+
 export default {
   replace: replaceBook,
   addList: addListOfBooks,
   removeAll: removeAllBooks,
+  removeBook: removeOnlyOneBook,
 }
