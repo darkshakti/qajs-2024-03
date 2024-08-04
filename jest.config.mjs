@@ -212,7 +212,7 @@ const config = {
 }
 
 if (process.env.CI) {
-  config.reporters.push(['github-actions', {silent: false}])
+  config.reporters.push(['github-actions', { silent: false }])
 }
 
 export default config

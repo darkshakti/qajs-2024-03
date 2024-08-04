@@ -1,3 +1,6 @@
 reports
 build
 node_modules/
+coverage
+allure-results
+allure-report
