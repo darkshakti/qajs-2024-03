@@ -206,6 +206,9 @@ const config = {
       },
     ],
   ],
+
+  // The test environment that will be used for testing
+  testEnvironment: 'allure-jest/node',
 }
 
 export default config

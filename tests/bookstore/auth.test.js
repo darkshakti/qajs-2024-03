@@ -8,7 +8,9 @@ describe('Авторизация', () => {
       userName: config.userName,
       password: config.password,
     }
-    await addMsg({message: `Доступы: ${JSON.stringify(credentials, null, 2)}`})
+    await addMsg({
+      message: `Доступы: ${JSON.stringify(credentials, null, 2)}`,
+    })
     const response = await AuthService.generateTokenCached(credentials)
 
     expect(response.status).toBe(200)
