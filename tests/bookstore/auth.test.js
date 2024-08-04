@@ -9,9 +9,9 @@ describe('Авторизация', () => {
       password: config.password,
     })
 
-    expect(response.status).toBe(200)
-    expect(response.data.result).toBe('User authorized successfully.')
-    expect(response.data.token).toBeDefined()
+    expect(response).toHaveProperty('status', 200)
+    expect(response).toHaveProperty('data.result','User authorized successfully.')
+    expect(response).toHaveProperty('data.token')
   }, 60000)
 
   it('Нельзя авторизоваться без пароля', async () => {
