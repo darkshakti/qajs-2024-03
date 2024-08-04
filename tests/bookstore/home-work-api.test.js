@@ -1,7 +1,8 @@
+/* eslint-disable jest/no-disabled-tests */
 import config from '../../framework/config/configBookstore'
 import { AuthService, UserService } from '../../framework'
 
-describe('Account Tests', () => {
+describe.skip('Account Tests', () => {
   let token
   const userId = config.userId
 

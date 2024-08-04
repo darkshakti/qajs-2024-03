@@ -1,17 +1,19 @@
-/* eslint-disable jest/no-disabled-tests */
 import config from '../../framework/config/configBookstore'
 import { AuthService } from '../../framework'
 
-describe.skip('Авторизация', () => {
+describe('Авторизация', () => {
   it('Успешная авторизация', async () => {
-    const response = await AuthService.generateToken({
+    const response = await AuthService.generateTokenCached({
       userName: config.userName,
       password: config.password,
     })
 
     expect(response.status).toBe(200)
-    expect(response.data.result).toBe('User authorized successfully.')
-    expect(response.data.token).toBeDefined()
+    expect(response.data).toMatchObject({
+      result: 'User authorized successfully.',
+      expires: expect.any(String),
+      token: expect.any(String),
+    })
   }, 60000)
 
   it('Нельзя авторизоваться без пароля', async () => {

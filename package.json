@@ -13,8 +13,8 @@
     "codestyle:ci": "run-p lint:ci format:ci",
     "codestyle": "run-s lint format",
     "build": "babel src --out-dir build --source-maps inline",
-    "test": "jest --verbose --setupFiles dotenv/config",
-    "coverage": "jest --coverage"
+    "test": "jest --verbose --runInBand --setupFiles dotenv/config",
+    "coverage": "jest --coverage --runInBand"
   },
   "author": "Margarita Vladyko <margo.vladyko@gmail.com>",
   "keywords": [],
