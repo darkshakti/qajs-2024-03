@@ -3,3 +3,4 @@ coverage
 .idea
 build
 .env
+reports
