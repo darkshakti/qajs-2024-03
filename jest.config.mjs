@@ -194,6 +194,25 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: './reports/html-report',
+        filename: 'index.html',
+        openReport: !!process.env.CI,
+      },
+    ],
+  ],
+
+  // The test environment that will be used for testing
+  testEnvironment: 'allure-jest/node',
+}
+
+if (process.env.CI) {
+  config.reporters.push(['github-actions', { silent: false }])
 }
 
 export default config

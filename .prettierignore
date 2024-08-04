@@ -1,2 +1,5 @@
 reports
 build
+coverage
+allure-results
+allure-report
