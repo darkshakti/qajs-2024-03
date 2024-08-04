@@ -1,14 +1,14 @@
 import { QuoteService } from '../../framework'
 import Ajv from 'ajv'
 
-const ajv = new Ajv();
+const ajv = new Ajv()
 
 const quoteSchema = {
   type: 'object',
   properties: {
-    id: {type: 'number'},
-    quote: {type: 'string'},
-    author: {type: 'string'}
+    id: { type: 'number' },
+    quote: { type: 'string' },
+    author: { type: 'string' },
   },
   required: ['id', 'quote', 'author'],
   additionalProperties: false,
