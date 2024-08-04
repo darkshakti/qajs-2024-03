@@ -1,45 +1,29 @@
-import { config as _config } from '../../framework'
-import got from 'got'
+/* eslint-disable jest/no-conditional-expect */
+import { config as _config, AuthDummyjsonService } from '../../framework'
 
 const config = _config.dummyjson
-/**
- * Чтобы got работал вместе с jest
- * нужно добавить в jest.config.js
- *   transformIgnorePatterns: [
- *     "/node_modules/(?!got)/"
- *   ]
- * DOC: https://jestjs.io/docs/configuration#transformignorepatterns-arraystring
- */
-// eslint-disable-next-line jest/no-disabled-tests
-describe.skip('Auth', () => {
+
+describe('Auth', () => {
   it('Success login', async () => {
-    const response = await got.post(`${config.baseURL}/auth/login`, {
-      json: {
-        username: config.username,
-        password: config.password,
-        expiresInMins: 30,
-      },
-      responseType: 'json',
+    const response = await AuthDummyjsonService.login({
+      username: config.username,
+      password: config.password,
     })
 
-    expect(response.statusCode).toEqual(200)
-    expect(response.body.username).toBe(config.username)
-    expect(response.body.token).toBeTruthy()
+    expect(response.status).toEqual(200)
+    expect(response.data.username).toBe(config.username)
+    expect(response.data.token).toBeTruthy()
   })
 
   it('Failed login', async () => {
-    const response = await fetch(`${config.baseURL}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    try {
+      await AuthDummyjsonService.login({
         username: config.username,
         password: 'wrongpassword',
-        expiresInMins: 30,
-      }),
-    })
-    const data = await response.json()
-
-    expect(response.status).toEqual(400)
-    expect(data.message).toBe('Invalid credentials')
+      })
+    } catch (error) {
+      expect(error.response.statusCode).toEqual(400)
+      expect(error.response.body.message).toBe('Invalid credentials')
+    }
   })
 })
