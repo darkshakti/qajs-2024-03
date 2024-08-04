@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-disabled-tests */
 import config from '../../framework/config/configBookstore'
 import { AuthService } from '../../framework'
 
@@ -9,9 +8,12 @@ describe('Авторизация', () => {
       password: config.password,
     })
 
-    expect(response).toHaveProperty('status', 200)
-    expect(response).toHaveProperty('data.result','User authorized successfully.')
-    expect(response).toHaveProperty('data.token')
+    expect(response.status).toBe(200)
+    expect(response.data).toMatchObject({
+      result: 'User authorized successfully.',
+      expires: expect.any(String),
+      token: expect.any(String),
+    })
   }, 60000)
 
   it('Нельзя авторизоваться без пароля', async () => {
