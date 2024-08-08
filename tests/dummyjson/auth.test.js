@@ -5,7 +5,7 @@ const config = _config.dummyjson
 
 // eslint-disable-next-line jest/no-disabled-tests
 describe.skip('Auth', () => {
-    it('Success login', async () => {
+  it('Success login', async () => {
     const response = await AuthDummyjsonService.login({
       username: config.username,
       password: config.password,
