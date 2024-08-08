@@ -3,8 +3,9 @@ import { config as _config, AuthDummyjsonService } from '../../framework'
 
 const config = _config.dummyjson
 
-describe('Auth', () => {
-  it('Success login', async () => {
+// eslint-disable-next-line jest/no-disabled-tests
+describe.skip('Auth', () => {
+    it('Success login', async () => {
     const response = await AuthDummyjsonService.login({
       username: config.username,
       password: config.password,

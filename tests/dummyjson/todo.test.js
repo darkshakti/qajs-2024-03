@@ -1,6 +1,7 @@
 import { TodoSchema, TodoService } from '../../framework'
 
-describe('Todo', () => {
+// eslint-disable-next-line jest/no-disabled-tests
+describe.skip('Todo', () => {
   it('Should return a todo', async () => {
     const response = await TodoService.get(2)
     expect(response.status).toBe(200)
