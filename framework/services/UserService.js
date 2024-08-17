@@ -33,10 +33,10 @@ const createUser = async ({ userName, password }) => {
    * кроме тех случаев, когда это мб вам необходимо
    */
   await TelegramService.sendMessage(
-  `Создан новый пользователь: \r\n` +
-    `username: ${userName} \r\n` +
-    `password: ${password} \r\n` +
-    `userId: ${response.data.userID}`,
+    `Создан новый пользователь: \r\n` +
+      `username: ${userName} \r\n` +
+      `password: ${password} \r\n` +
+      `userId: ${response.data.userID}`,
   )
 
   return {
