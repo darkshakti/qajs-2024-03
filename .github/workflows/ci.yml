@@ -59,13 +59,12 @@ jobs:
       - run: npm ci
       - run: echo "${{secrets.ENV_FILE}}" >> .env
       - run: npm test
-      - run: npm run allure:ci
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'allure-report'
+          path: 'reports/html-report'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
