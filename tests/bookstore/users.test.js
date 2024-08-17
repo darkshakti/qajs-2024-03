@@ -1,7 +1,6 @@
-/* eslint-disable jest/no-disabled-tests */
 import { AuthService, UserService, UserFixture } from '../../framework'
 
-describe.skip('Users', () => {
+describe('Users', () => {
   let token
   let userId
   let newUser
@@ -28,8 +27,6 @@ describe.skip('Users', () => {
 
   it('Получение информации о пользователе', async () => {
     const response = await UserService.get({ userId, token })
-
-    console.log(response)
 
     expect(response.status).toBe(200)
     expect(response.data.username).toBe(`${newUser.userName}`)
