@@ -24,7 +24,7 @@ test:
   script:
     - npm ci
     - cp .env.example .env
-    - npm run test:ci
+    - npm run test
   artifacts:
     paths:
       - allure-results
