@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.setTimeout(20000);
+test.setTimeout(30000);
 
 test('Test-1: Successful login', async ({ page }) => {
   await page.goto('https://opensource-demo.orangehrmlive.com/');
