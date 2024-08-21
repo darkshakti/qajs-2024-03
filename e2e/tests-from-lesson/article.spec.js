@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import { test, expect } from '@playwright/test'
 import { loginAdmin } from '../../framework/actions/auth'
 
