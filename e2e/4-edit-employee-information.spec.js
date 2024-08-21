@@ -24,7 +24,6 @@ test('Test-4: Edit employee information', async ({ page }) => {
   await page.getByRole('button', { name: 'Search' }).click();
   await page.click('text=Curtis');
   await page.waitForLoadState('domcontentloaded');
-  // await page.waitForTimeout(5000);
 
   // Изменить информацию о национальности
   await page.locator('[class*="input-field-bottom-space"]', {hasText: 'Nationality'}).locator('[class*="text-input"]').click();
