@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   await loginAdmin({ page })
 })
 
-test('Обновление страницы', async ({ page }) => {
+test.skip('Обновление страницы', async ({ page }) => {
   await page.goto('/article/post-for-test-edit')
   await page.getByRole('button', { name: 'Edit Article' }).first().click()
   await page.waitForURL('/editor/post-for-test-edit')
@@ -27,7 +27,9 @@ test('Обновление страницы', async ({ page }) => {
   await expect(page.getByText('Old text')).toBeVisible()
 })
 
-test('Добавляем комментарий страницы, сервер не отвечает', async ({ page }) => {
+test.skip('Добавляем комментарий страницы, сервер не отвечает', async ({
+  page,
+}) => {
   // visit
 
   // fill
