@@ -1,0 +1,51 @@
+stages:
+  - lint
+  - test
+  - report
+  - build
+
+eslint:
+  stage: lint
+  image: node:20.11.0
+  script:
+    - npm ci
+    - npm run lint
+
+prettier:
+  stage: lint
+  image: node:20.11.0
+  script:
+    - npm ci
+    - npm run format
+
+test:
+  stage: test
+  image: node:20.11.0
+  script:
+    - npm ci
+    - cp .env.example .env
+    - npm run test
+  artifacts:
+    paths:
+      - allure-results
+
+allure:
+  stage: report
+  image: registry.gitlab.com/qa-js1/otus-qa-2024-03-1/allure:latest
+  script:
+    - cd /app
+    - npx allure generate allure-results --clean
+  artifacts:
+    paths:
+      - allure-report
+
+build:
+  image: docker:20.10.16
+  stage: build
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG

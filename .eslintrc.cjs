@@ -2,13 +2,9 @@ module.exports = {
   env: {
     es2021: true,
     node: true,
-    jest: true
+    jest: true,
   },
-  extends: [
-    'standard', 
-    'prettier',
-    'plugin:jest/recommended'
-  ],
+  extends: ['standard', 'prettier', 'plugin:jest/recommended'],
   overrides: [
     {
       env: {
