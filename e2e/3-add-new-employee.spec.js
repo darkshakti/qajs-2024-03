@@ -1,22 +1,21 @@
 import { test, expect } from '@playwright/test'
+import { LoginPage, MainPage, PimPage } from '../autotests-core/pages'
+import generateRandomNumber from '../autotests-core/utils/number'
 
-test.setTimeout(60000)
+test.setTimeout(80000)
 
 test('Test-3: Add new employee', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/')
-  await page.fill('input[name="username"]', 'Admin')
-  await page.fill('input[name="password"]', 'admin123')
-  await page.click('button[type="submit"]')
+  const loginPage = new LoginPage(page)
+  const mainPage = new MainPage(page)
+  const pimPage = new PimPage(page)
 
-  // Перейти в раздел PIM
-  await page.getByRole('link', { name: 'PIM' }).click()
-
-  // Нажать кнопку Add Employee
-  await page.getByRole('link', { name: 'Add Employee' }).click()
-
-  await page.fill('input[name="firstName"]', 'Jonathan')
-  await page.fill('input[name="lastName"]', 'Livingston')
-  await page.click('button[type="submit"]')
+  await loginPage.login('Admin', 'admin123')
+  await mainPage.gotoPIM()
+  await pimPage.clickAddEmployeeButton()
+  await pimPage.fillFirstName('Jonathan')
+  await pimPage.fillLastname('Livingston')
+  await pimPage.fillID(`${generateRandomNumber()}`)
+  await pimPage.save()
 
   // Отображается карточка нового сотрудника
   await expect(

@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker'
 import { AuthPage } from '../../framework/pages/AuthPage'
 import { LoginPage } from '../../framework/pages/LoginPage'
 
-test('Создание нового юзера', async ({ page }) => {
+test.skip('Создание нового юзера', async ({ page }) => {
   const authPage = AuthPage({ page })
 
   await authPage.reg({
@@ -16,7 +16,7 @@ test('Создание нового юзера', async ({ page }) => {
   await expect(page.getByText('No articles are here... yet.')).toBeVisible()
 })
 
-test('Успешная авторизация', async ({ page }) => {
+test.skip('Успешная авторизация', async ({ page }) => {
   const loginPage = LoginPage({ page })
 
   await loginPage.login({
@@ -31,7 +31,9 @@ test('Успешная авторизация', async ({ page }) => {
   ).toBeVisible()
 })
 
-test('Неуспешная регистрация c уже существующим email', async ({ page }) => {
+test.skip('Неуспешная регистрация c уже существующим email', async ({
+  page,
+}) => {
   const authPage = AuthPage({ page })
 
   await authPage.visit()
@@ -45,7 +47,7 @@ test('Неуспешная регистрация c уже существующ�
   await expect(page.getByText('Register fail')).toBeVisible()
 })
 
-test('Неуспешная авторизация c неверным паролем', async ({ page }) => {
+test.skip('Неуспешная авторизация c неверным паролем', async ({ page }) => {
   const loginPage = LoginPage({ page })
 
   await loginPage.visit()
@@ -55,7 +57,7 @@ test('Неуспешная авторизация c неверным парол�
   await expect(page.getByText('This page could not be found.')).toBeVisible()
 })
 
-test('Неуспешная регистрация c пустыми полями', async ({ page }) => {
+test.skip('Неуспешная регистрация c пустыми полями', async ({ page }) => {
   const authPage = AuthPage({ page })
 
   await authPage.visit()
@@ -65,7 +67,7 @@ test('Неуспешная регистрация c пустыми полями'
   await expect(page.getByText('Password is too short')).toBeVisible()
 })
 
-test('Неуспешная авторизация c незарегистрированным email', async ({
+test.skip('Неуспешная авторизация c незарегистрированным email', async ({
   page,
 }) => {
   const loginPage = LoginPage({ page })

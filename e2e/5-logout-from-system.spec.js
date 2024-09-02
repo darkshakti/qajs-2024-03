@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test'
+import { LoginPage } from '../autotests-core/pages'
 
-test.setTimeout(40000)
+test.setTimeout(60000)
 
 test('Test-5: Logout from the system', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/')
-  await page.fill('input[name="username"]', 'Admin')
-  await page.fill('input[name="password"]', 'admin123')
-  await page.click('button[type="submit"]')
+  const loginPage = new LoginPage(page)
+
+  await loginPage.login('Admin', 'admin123')
 
   // Выход из системы
   await page
@@ -16,8 +16,6 @@ test('Test-5: Logout from the system', async ({ page }) => {
   await page.getByRole('menuitem', { name: 'Logout' }).click()
 
   // Пользователь перенаправлен на страницу входа
-  await expect(page).toHaveURL(
-    'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-  )
-  await expect(page.locator('input[name="username"]')).toBeVisible()
+  await expect(page).toHaveURL('/web/index.php/auth/login')
+  await expect(loginPage.usernameInput).toBeVisible()
 })

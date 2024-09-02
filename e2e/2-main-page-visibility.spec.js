@@ -1,12 +1,13 @@
 import { test, expect } from '@playwright/test'
+import { LoginPage, MainPage } from '../autotests-core/pages'
 
 test.setTimeout(60000)
 
 test('Test-2: Main page visibility after login', async ({ page }) => {
-  await page.goto('https://opensource-demo.orangehrmlive.com/')
-  await page.fill('input[name="username"]', 'Admin')
-  await page.fill('input[name="password"]', 'admin123')
-  await page.click('button[type="submit"]')
+  const loginPage = new LoginPage(page)
+  const mainPage = new MainPage(page)
+
+  await loginPage.login('Admin', 'admin123')
 
   // На главной странице отображаются элементы
   // Панель навигации
@@ -27,12 +28,14 @@ test('Test-2: Main page visibility after login', async ({ page }) => {
   // Меню "Time" в навигации
   await expect(page.getByRole('link', { name: 'Time' })).toBeVisible()
 
+  await mainPage.gotoPIM()
+
   // Кнопка "Add Employee" в разделе PIM
-  await page.getByRole('link', { name: 'PIM' }).click()
   await expect(page.getByRole('link', { name: 'Add Employee' })).toBeVisible()
 
+  await mainPage.gotoDashbord()
+
   // Виджет "Employee Distribution by Sub Unit"
-  await page.getByRole('link', { name: 'Dashboard' }).click()
   await expect(
     page.locator('[class*="dashboard-widget-name"]', {
       hasText: 'Employee Distribution by Sub Unit',
