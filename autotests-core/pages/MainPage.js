@@ -11,6 +11,7 @@ export class MainPage {
 
   async gotoPIM() {
     await this.page.getByRole('link', { name: 'PIM' }).click()
+    await this.page.waitForLoadState('domcontentloaded')
     await expect(this.title).toHaveText('PIM')
   }
 
